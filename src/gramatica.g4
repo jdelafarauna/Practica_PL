@@ -3,6 +3,7 @@ grammar gramatica;
 @members {
     String currentFunction = null;
     int indentLevel = 0;
+    java.util.Map<String, String> symbolTable = new java.util.HashMap<>();
 
     void println(String line) {
         for (int i = 0; i < indentLevel; i++) System.out.print("    ");
@@ -46,8 +47,16 @@ ctelistPrima : ID '=' simpvalue ';' { println("#define " + $ID.text + " " + $sim
 simpvalue : CONSTINT | CONSTREAL | CONSTLIT ;
 
 defvar : 'var' defvarlist ';' {println("");};
-defvarlist : varlist ':' tbas { println($tbas.val + " " + $varlist.text + ";"); } defvarlistPrima ;
-defvarlistPrima : ';' varlist ':' tbas { println($tbas.val + " " + $varlist.text + ";"); } defvarlistPrima | ;
+defvarlist : varlist ':' tbas {
+    String[] vars = $varlist.text.split(",");
+    for (String var : vars) symbolTable.put(var.trim(), $tbas.val);
+    println($tbas.val + " " + $varlist.text + ";");
+} defvarlistPrima ;
+defvarlistPrima : ';' varlist ':' tbas {
+    String[] vars = $varlist.text.split(",");
+    for (String var : vars) symbolTable.put(var.trim(), $tbas.val);
+    println($tbas.val + " " + $varlist.text + ";");
+} defvarlistPrima | ;
 
 varlist : ID varlistPrima ;
 varlistPrima : ',' ID varlistPrima | ;
@@ -69,6 +78,7 @@ deffun
         print($rtype.val + " " + currentFunction + "(" + $fname.text + ") {");
         System.out.println();
         indentLevel++;
+        symbolTable.put(currentFunction, $rtype.val);
     }
       blq
     ';' {
@@ -84,6 +94,7 @@ formal_paramlist returns [String text = ""]
         for (int i = 0; i < $params.size(); i++) {
             if (i > 0) builder.append(", ");
             builder.append($params.get(i).text);
+            // Registrar en symbolTable también si se desea
         }
         $text = builder.toString();
     }
@@ -92,6 +103,8 @@ formal_paramlist returns [String text = ""]
 
 formal_param returns [String text]
     : vl=varlist ':' tb=tbas {
+        String[] vars = $vl.text.split(",");
+        for (String var : vars) symbolTable.put(var.trim(), $tb.val);
         $text = $tb.val + " " + $vl.text;
     }
     ;
@@ -146,7 +159,8 @@ write
             if (val.startsWith("'")) {
                 format.append(val.substring(1, val.length() - 1));
             } else {
-                format.append("%d");
+                String type = symbolTable.getOrDefault(val, "int");
+                format.append(type.equals("float") ? "%f" : "%d");
                 args.add(val);
             }
         }

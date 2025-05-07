@@ -8,14 +8,22 @@ import java.io.PrintStream;
 public class Main {
     public static void main(String[] args) throws IOException {
         if (args.length != 1) {
-            System.err.println("Uso: java -jar miPrograma.jar <ruta_fichero.txt>");
+            System.err.println("Uso: java -jar miPrograma.jar <ruta_fichero.pas>");
             System.exit(1);
         }
-        //Fichero de entrada
+
+// Fichero de entrada
         String filePath = args[0];
         CharStream input = CharStreams.fromFileName(filePath);
-        //Duplicar salida a fichero
-        String nombreArchivo = "output.txt";
+
+// Reemplazar .pas por .c para el nombre del archivo de salida
+        String nombreArchivo;
+        if (filePath.endsWith(".pas")) {
+            nombreArchivo = filePath.substring(0, filePath.length() - 4) + ".c";
+        } else {
+            nombreArchivo = filePath + ".c"; // por si no tiene .pas
+        }
+
         FileOutputStream archivoSalida = new FileOutputStream(nombreArchivo);
         PrintStream printStream = new PrintStream(archivoSalida);
         PrintStream stdout = System.out;

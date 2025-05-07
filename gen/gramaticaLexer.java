@@ -94,6 +94,7 @@ public class gramaticaLexer extends Lexer {
 
 	    String currentFunction = null;
 	    int indentLevel = 0;
+	    java.util.Map<String, String> symbolTable = new java.util.HashMap<>();
 
 	    void println(String line) {
 	        for (int i = 0; i < indentLevel; i++) System.out.print("    ");

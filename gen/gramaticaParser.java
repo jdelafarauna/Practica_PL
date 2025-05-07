@@ -109,6 +109,7 @@ public class gramaticaParser extends Parser {
 
 	    String currentFunction = null;
 	    int indentLevel = 0;
+	    java.util.Map<String, String> symbolTable = new java.util.HashMap<>();
 
 	    void println(String line) {
 	        for (int i = 0; i < indentLevel; i++) System.out.print("    ");
@@ -749,7 +750,11 @@ public class gramaticaParser extends Parser {
 			match(T__8);
 			setState(132);
 			((DefvarlistContext)_localctx).tbas = tbas();
-			 println(((DefvarlistContext)_localctx).tbas.val + " " + (((DefvarlistContext)_localctx).varlist!=null?_input.getText(((DefvarlistContext)_localctx).varlist.start,((DefvarlistContext)_localctx).varlist.stop):null) + ";"); 
+
+			    String[] vars = (((DefvarlistContext)_localctx).varlist!=null?_input.getText(((DefvarlistContext)_localctx).varlist.start,((DefvarlistContext)_localctx).varlist.stop):null).split(",");
+			    for (String var : vars) symbolTable.put(var.trim(), ((DefvarlistContext)_localctx).tbas.val);
+			    println(((DefvarlistContext)_localctx).tbas.val + " " + (((DefvarlistContext)_localctx).varlist!=null?_input.getText(((DefvarlistContext)_localctx).varlist.start,((DefvarlistContext)_localctx).varlist.stop):null) + ";");
+
 			setState(134);
 			defvarlistPrima();
 			}
@@ -815,7 +820,11 @@ public class gramaticaParser extends Parser {
 				match(T__8);
 				setState(139);
 				((DefvarlistPrimaContext)_localctx).tbas = tbas();
-				 println(((DefvarlistPrimaContext)_localctx).tbas.val + " " + (((DefvarlistPrimaContext)_localctx).varlist!=null?_input.getText(((DefvarlistPrimaContext)_localctx).varlist.start,((DefvarlistPrimaContext)_localctx).varlist.stop):null) + ";"); 
+
+				    String[] vars = (((DefvarlistPrimaContext)_localctx).varlist!=null?_input.getText(((DefvarlistPrimaContext)_localctx).varlist.start,((DefvarlistPrimaContext)_localctx).varlist.stop):null).split(",");
+				    for (String var : vars) symbolTable.put(var.trim(), ((DefvarlistPrimaContext)_localctx).tbas.val);
+				    println(((DefvarlistPrimaContext)_localctx).tbas.val + " " + (((DefvarlistPrimaContext)_localctx).varlist!=null?_input.getText(((DefvarlistPrimaContext)_localctx).varlist.start,((DefvarlistPrimaContext)_localctx).varlist.stop):null) + ";");
+
 				setState(141);
 				defvarlistPrima();
 				}
@@ -1071,6 +1080,7 @@ public class gramaticaParser extends Parser {
 			        print(((DeffunContext)_localctx).rtype.val + " " + currentFunction + "(" + ((DeffunContext)_localctx).fname.text + ") {");
 			        System.out.println();
 			        indentLevel++;
+			        symbolTable.put(currentFunction, ((DeffunContext)_localctx).rtype.val);
 			    
 			setState(172);
 			blq();
@@ -1164,6 +1174,7 @@ public class gramaticaParser extends Parser {
 				        for (int i = 0; i < ((Formal_paramlistContext)_localctx).params.size(); i++) {
 				            if (i > 0) builder.append(", ");
 				            builder.append(((Formal_paramlistContext)_localctx).params.get(i).text);
+				            // Registrar en symbolTable también si se desea
 				        }
 				        ((Formal_paramlistContext)_localctx).text =  builder.toString();
 				    
@@ -1234,6 +1245,8 @@ public class gramaticaParser extends Parser {
 			setState(193);
 			((Formal_paramContext)_localctx).tb = tbas();
 
+			        String[] vars = (((Formal_paramContext)_localctx).vl!=null?_input.getText(((Formal_paramContext)_localctx).vl.start,((Formal_paramContext)_localctx).vl.stop):null).split(",");
+			        for (String var : vars) symbolTable.put(var.trim(), ((Formal_paramContext)_localctx).tb.val);
 			        ((Formal_paramContext)_localctx).text =  ((Formal_paramContext)_localctx).tb.val + " " + (((Formal_paramContext)_localctx).vl!=null?_input.getText(((Formal_paramContext)_localctx).vl.start,((Formal_paramContext)_localctx).vl.stop):null);
 			    
 			}
@@ -2271,7 +2284,8 @@ public class gramaticaParser extends Parser {
 			            if (val.startsWith("'")) {
 			                format.append(val.substring(1, val.length() - 1));
 			            } else {
-			                format.append("%d");
+			                String type = symbolTable.getOrDefault(val, "int");
+			                format.append(type.equals("float") ? "%f" : "%d");
 			                args.add(val);
 			            }
 			        }
