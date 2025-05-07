@@ -29,7 +29,7 @@ El flujo principal de ejecución del compilador es el siguiente:
 ## Instalación
 
 1. **Clonar el repositorio**:
-   ```bash
+   ```
    git clone https://github.com/jdelafarauna/Practica_PL.git
    ```
 
