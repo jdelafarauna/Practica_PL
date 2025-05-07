@@ -1,4 +1,3 @@
-```markdown
 # Práctica de Procesadores de Lenguaje (Practica_PL)
 
 ## Descripción general
@@ -29,62 +28,5 @@ El flujo principal de ejecución del compilador es el siguiente:
 ## Instalación
 
 1. **Clonar el repositorio**:
-
+   ```bash
    git clone https://github.com/jdelafarauna/Practica_PL.git
-
-2. **Importar el proyecto en IntelliJ IDEA**:
-   - Abrir IntelliJ IDEA.
-   - Seleccionar "Open" y navegar hasta la carpeta del proyecto clonado.
-   - Asegurarse de que el SDK de Java esté configurado correctamente.
-
-3. **Configurar ANTLR**:
-   - Instalar el plugin de ANTLR v4 para IntelliJ IDEA.
-   - Verificar que las herramientas de ANTLR estén disponibles en el entorno.
-
-## Ejemplos de uso
-
-Para compilar y ejecutar el proyecto:
-
-1. **Generar los analizadores**:
-   - Utilizar ANTLR para generar las clases del lexer y parser a partir de las gramáticas definidas.
-
-2. **Compilar el proyecto**:
-   - Usar las herramientas de compilación de IntelliJ IDEA o ejecutar:
-     ```bash
-     javac -d bin src/**/*.java
-     ```
-
-3. **Ejecutar el compilador**:
-   - Ejecutar la clase principal que inicia el proceso de compilación:
-     ```bash
-     java -cp bin MainClass inputFile
-     ```
-
-   *Nota: Reemplazar `MainClass` por el nombre de la clase principal y `inputFile` por el archivo de código fuente a compilar.*
-
-## Estructura del proyecto
-
-
-Practica_PL/
-├── .idea/                 # Configuración del proyecto para IntelliJ IDEA
-├── gen/                   # Archivos generados por ANTLR
-├── src/                   # Código fuente del compilador
-│   ├── lexer/             # Definiciones del lexer
-│   ├── parser/            # Definiciones del parser
-│   ├── semantics/         # Análisis semántico
-│   └── codegen/           # Generación de código
-├── .gitignore             # Archivos y carpetas ignorados por Git
-└── Practica.iml           # Archivo de configuración del proyecto
-
-
-## Cómo contribuir
-
-1. **Fork del repositorio**: Crear una copia del repositorio en tu cuenta de GitHub.
-2. **Crear una rama**: Realizar los cambios en una nueva rama descriptiva.
-3. **Realizar commits**: Hacer commits claros y concisos de los cambios realizados.
-4. **Pull request**: Enviar un pull request al repositorio original para revisión.
-
-## Licencia
-
-Este proyecto no especifica una licencia. Se recomienda contactar al autor para obtener información sobre los términos de uso y distribución.
-``` 
