@@ -14,7 +14,7 @@ void ShowValues(int x, int y) {
     printf("Second value: %d\n", y);
 }
 int Multiply(int n1, int n2) {
-    int n2;
+    int n3;
     
     return n1*n2;
 }
