@@ -1,29 +1,53 @@
 grammar gramatica;
 
-
 @members {
     String currentFunction = null;
+    int indentLevel = 0;
+
+    void println(String line) {
+        for (int i = 0; i < indentLevel; i++) System.out.print("    ");
+        System.out.println(line);
+    }
+
+    void print(String line) {
+        for (int i = 0; i < indentLevel; i++) System.out.print("    ");
+        System.out.print(line);
+    }
 }
 
-
-prg : 'program' ID ';' {System.out.print("#include <stdio.h> \n\n");} blq '.' ;
-
-blq : dcllist 'begin' sentlist 'end' ;
+prg
+: 'program' ID ';'
+  {
+    System.out.println("#include <stdio.h>\n");
+  }
+  dcllist
+  {
+    System.out.println();
+    println("int main() {");
+    indentLevel++;
+  }
+  'begin' sentlist 'end' '.'
+  {
+    println("return 0;");
+    indentLevel--;
+    println("}");
+  }
+;
 
 dcllist : dcl dcllistPrima | ;
 dcllistPrima : dcl dcllistPrima | ;
 
 dcl : defcte | defvar | defproc | deffun ;
 
-defcte : 'const' ctelist ;
-ctelist : ID '=' simpvalue ';' {System.out.println("#define " + $ID.text + " " + $simpvalue.text);} ctelistPrima ;
-ctelistPrima : ID '=' simpvalue ';' {System.out.println("#define " + $ID.text + " " + $simpvalue.text);} ctelistPrima | ;
+defcte : 'const' ctelist {println("");};
+ctelist : ID '=' simpvalue ';' { println("#define " + $ID.text + " " + $simpvalue.text); } ctelistPrima ;
+ctelistPrima : ID '=' simpvalue ';' { println("#define " + $ID.text + " " + $simpvalue.text); } ctelistPrima | ;
 
 simpvalue : CONSTINT | CONSTREAL | CONSTLIT ;
 
-defvar : 'var' defvarlist ';' ;
-defvarlist : varlist ':' tbas {System.out.print($tbas.val + " " + $varlist.text + ";\n");} defvarlistPrima ;
-defvarlistPrima : ';' varlist ':' tbas {System.out.println($tbas.val + " " + $varlist.text + ";\n");} defvarlistPrima | ;
+defvar : 'var' defvarlist ';' {println("");};
+defvarlist : varlist ':' tbas { println($tbas.val + " " + $varlist.text + ";"); } defvarlistPrima ;
+defvarlistPrima : ';' varlist ':' tbas { println($tbas.val + " " + $varlist.text + ";"); } defvarlistPrima | ;
 
 varlist : ID varlistPrima ;
 varlistPrima : ',' ID varlistPrima | ;
@@ -33,25 +57,26 @@ returns [String fname]
     : 'procedure' ID { $fname = $ID.text; }
       fp=formal_paramlist
       ';'
-      { System.out.print("void " + $fname); System.out.print("(" + $fp.text + ") {\n"); }
+      { print("void " + $fname); print("(" + $fp.text + ") {"); System.out.println(); indentLevel++; }
       blq
       ';'
-      { System.out.println("}"); }
+      { indentLevel--; println("}"); }
     ;
 
 deffun
     : 'function' ID fname=formal_paramlist ':' rtype=tbas ';' {
         currentFunction = $ID.text;
-        System.out.print($rtype.val + " " + currentFunction + "(" + $fname.text + ") {\n");
+        print($rtype.val + " " + currentFunction + "(" + $fname.text + ") {");
+        System.out.println();
+        indentLevel++;
     }
       blq
     ';' {
-        System.out.println("}");
-        currentFunction = null; // limpiar después de la función
+        indentLevel--;
+        println("}");
+        currentFunction = null;
     }
     ;
-
-
 
 formal_paramlist returns [String text = ""]
     : '(' params+=formal_param ( ';' params+=formal_param )* ')' {
@@ -71,7 +96,6 @@ formal_param returns [String text]
     }
     ;
 
-
 formal_paramPrima returns [String text]
     : ';' next=formal_param { $text = ", " + $next.text; }
     |                        { $text = ""; }
@@ -82,6 +106,8 @@ tbas returns [String val]
     | 'REAL'    { $val = "float"; }
     ;
 
+blq : dcllist 'begin' sentlist 'end' ;
+
 sentlist : sent sentlistPrima ;
 sentlistPrima : sent sentlistPrima | ;
 
@@ -90,14 +116,12 @@ sent : asig ';' | proc_call ';' | write ;
 asig
     : ID ':=' exp {
         if ($ID.text.equals(currentFunction)) {
-            System.out.println("return " + $exp.text + ";");
+            println("return " + $exp.text + ";");
         } else {
-            System.out.println($ID.text + " = " + $exp.text + ";");
+            println($ID.text + " = " + $exp.text + ";");
         }
     }
     ;
-
-
 
 exp : factor expPrima ;
 expPrima : op factor expPrima | ;
@@ -120,10 +144,8 @@ write
         for (int i = 0; i < $exprList.values.size(); i++) {
             String val = $exprList.values.get(i);
             if (val.startsWith("'")) {
-                // Cadena literal: eliminar comillas y añadir al formato
                 format.append(val.substring(1, val.length() - 1));
             } else {
-                // Expresión (número, variable, etc.)
                 format.append("%d");
                 args.add(val);
             }
@@ -132,22 +154,21 @@ write
         if ($wtype.text.equals("writeln")) format.append("\\n");
 
         if (args.isEmpty()) {
-            System.out.println("printf(\"" + format + "\");");
+            println("printf(\"" + format + "\");");
         } else {
-            System.out.print("printf(\"" + format + "\", ");
+            StringBuilder line = new StringBuilder("printf(\"" + format + "\", ");
             for (int i = 0; i < args.size(); i++) {
-                if (i > 0) System.out.print(", ");
-                System.out.print(args.get(i));
+                if (i > 0) line.append(", ");
+                line.append(args.get(i));
             }
-            System.out.println(");");
+            line.append(");");
+            println(line.toString());
         }
     }
     ;
 
 exprList returns [List<String> values = new ArrayList<>()]
     : a=exp { $values.add($a.text); } (',' b=exp { $values.add($b.text); })* ;
-
-
 
 writeArgs returns [String vlex]
 @init { $vlex = ""; }

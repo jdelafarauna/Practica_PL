@@ -1,4 +1,4 @@
-// Generated from /Users/josedelafuente/Desktop/Practica_PL/src/gramatica.g4 by ANTLR 4.13.1
+// Generated from C:/Users/jdela/IdeaProjects/Practica_PL/src/gramatica.g4 by ANTLR 4.13.2
 
 import org.antlr.v4.runtime.ParserRuleContext;
 import org.antlr.v4.runtime.tree.ErrorNode;
@@ -16,25 +16,13 @@ public class gramaticaBaseListener implements gramaticaListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterProgram(gramaticaParser.ProgramContext ctx) { }
+	@Override public void enterPrg(gramaticaParser.PrgContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitProgram(gramaticaParser.ProgramContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void enterBlq(gramaticaParser.BlqContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitBlq(gramaticaParser.BlqContext ctx) { }
+	@Override public void exitPrg(gramaticaParser.PrgContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -47,6 +35,18 @@ public class gramaticaBaseListener implements gramaticaListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitDcllist(gramaticaParser.DcllistContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterDcllistPrima(gramaticaParser.DcllistPrimaContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitDcllistPrima(gramaticaParser.DcllistPrimaContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -88,13 +88,13 @@ public class gramaticaBaseListener implements gramaticaListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterCtelist_aux(gramaticaParser.Ctelist_auxContext ctx) { }
+	@Override public void enterCtelistPrima(gramaticaParser.CtelistPrimaContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitCtelist_aux(gramaticaParser.Ctelist_auxContext ctx) { }
+	@Override public void exitCtelistPrima(gramaticaParser.CtelistPrimaContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -136,13 +136,13 @@ public class gramaticaBaseListener implements gramaticaListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterDefvarlist_aux(gramaticaParser.Defvarlist_auxContext ctx) { }
+	@Override public void enterDefvarlistPrima(gramaticaParser.DefvarlistPrimaContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitDefvarlist_aux(gramaticaParser.Defvarlist_auxContext ctx) { }
+	@Override public void exitDefvarlistPrima(gramaticaParser.DefvarlistPrimaContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -160,13 +160,13 @@ public class gramaticaBaseListener implements gramaticaListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterVarlist_aux(gramaticaParser.Varlist_auxContext ctx) { }
+	@Override public void enterVarlistPrima(gramaticaParser.VarlistPrimaContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitVarlist_aux(gramaticaParser.Varlist_auxContext ctx) { }
+	@Override public void exitVarlistPrima(gramaticaParser.VarlistPrimaContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -208,18 +208,6 @@ public class gramaticaBaseListener implements gramaticaListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterFormal_paramlist_aux(gramaticaParser.Formal_paramlist_auxContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitFormal_paramlist_aux(gramaticaParser.Formal_paramlist_auxContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
 	@Override public void enterFormal_param(gramaticaParser.Formal_paramContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -227,6 +215,18 @@ public class gramaticaBaseListener implements gramaticaListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitFormal_param(gramaticaParser.Formal_paramContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterFormal_paramPrima(gramaticaParser.Formal_paramPrimaContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitFormal_paramPrima(gramaticaParser.Formal_paramPrimaContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -244,6 +244,18 @@ public class gramaticaBaseListener implements gramaticaListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
+	@Override public void enterBlq(gramaticaParser.BlqContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitBlq(gramaticaParser.BlqContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
 	@Override public void enterSentlist(gramaticaParser.SentlistContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -256,13 +268,13 @@ public class gramaticaBaseListener implements gramaticaListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterSentlist_aux(gramaticaParser.Sentlist_auxContext ctx) { }
+	@Override public void enterSentlistPrima(gramaticaParser.SentlistPrimaContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitSentlist_aux(gramaticaParser.Sentlist_auxContext ctx) { }
+	@Override public void exitSentlistPrima(gramaticaParser.SentlistPrimaContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -304,13 +316,13 @@ public class gramaticaBaseListener implements gramaticaListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterExp_aux(gramaticaParser.Exp_auxContext ctx) { }
+	@Override public void enterExpPrima(gramaticaParser.ExpPrimaContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitExp_aux(gramaticaParser.Exp_auxContext ctx) { }
+	@Override public void exitExpPrima(gramaticaParser.ExpPrimaContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -328,25 +340,13 @@ public class gramaticaBaseListener implements gramaticaListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterOprel(gramaticaParser.OprelContext ctx) { }
+	@Override public void enterOparit(gramaticaParser.OparitContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitOprel(gramaticaParser.OprelContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void enterOpbool(gramaticaParser.OpboolContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitOpbool(gramaticaParser.OpboolContext ctx) { }
+	@Override public void exitOparit(gramaticaParser.OparitContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -364,6 +364,18 @@ public class gramaticaBaseListener implements gramaticaListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
+	@Override public void enterSubparamlist(gramaticaParser.SubparamlistContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitSubparamlist(gramaticaParser.SubparamlistContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
 	@Override public void enterExplist(gramaticaParser.ExplistContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -376,25 +388,13 @@ public class gramaticaBaseListener implements gramaticaListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterExplist_aux(gramaticaParser.Explist_auxContext ctx) { }
+	@Override public void enterExplistPrima(gramaticaParser.ExplistPrimaContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitExplist_aux(gramaticaParser.Explist_auxContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void enterSubparamlist(gramaticaParser.SubparamlistContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitSubparamlist(gramaticaParser.SubparamlistContext ctx) { }
+	@Override public void exitExplistPrima(gramaticaParser.ExplistPrimaContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -412,37 +412,37 @@ public class gramaticaBaseListener implements gramaticaListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterCondicional(gramaticaParser.CondicionalContext ctx) { }
+	@Override public void enterWrite(gramaticaParser.WriteContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitCondicional(gramaticaParser.CondicionalContext ctx) { }
+	@Override public void exitWrite(gramaticaParser.WriteContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterCond_else(gramaticaParser.Cond_elseContext ctx) { }
+	@Override public void enterExprList(gramaticaParser.ExprListContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitCond_else(gramaticaParser.Cond_elseContext ctx) { }
+	@Override public void exitExprList(gramaticaParser.ExprListContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterBucle(gramaticaParser.BucleContext ctx) { }
+	@Override public void enterWriteArgs(gramaticaParser.WriteArgsContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitBucle(gramaticaParser.BucleContext ctx) { }
+	@Override public void exitWriteArgs(gramaticaParser.WriteArgsContext ctx) { }
 
 	/**
 	 * {@inheritDoc}
