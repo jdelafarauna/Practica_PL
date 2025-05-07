@@ -1,0 +1,40 @@
+#include <stdio.h>
+
+#define PI 3.14159
+#define FACTOR 2
+
+int a, b, c;
+float r, area;
+
+void ShowValues(int x, int y) {
+    int d, e, f, g;
+    float r2, r3, r4, r5;
+
+    printf("First value: %d\n", x);
+    printf("Second value: %d\n", y);
+}
+
+int Multiply(int n1, int n2) {
+    return n1 * n2;
+}
+
+float CircleArea(float radius) {
+    return PI * radius * radius;
+}
+
+int main() {
+    a = 5;
+    b = 10;
+    c = Multiply(a, b);
+
+    ShowValues(a, c);
+
+    r = 7.5;
+    area = CircleArea(r);
+
+    printf("Radius: %.2f\n", r);
+    printf("Area of circle: %.2f\n", area);
+    printf("Constant factor: %d\n", FACTOR);
+
+    return 0;
+}
