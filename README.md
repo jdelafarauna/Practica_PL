@@ -64,7 +64,7 @@ Para compilar y ejecutar el proyecto:
 
 ## Estructura del proyecto
 
-```
+
 Practica_PL/
 ├── .idea/                 # Configuración del proyecto para IntelliJ IDEA
 ├── gen/                   # Archivos generados por ANTLR
@@ -75,7 +75,7 @@ Practica_PL/
 │   └── codegen/           # Generación de código
 ├── .gitignore             # Archivos y carpetas ignorados por Git
 └── Practica.iml           # Archivo de configuración del proyecto
-```
+
 
 ## Cómo contribuir
 
