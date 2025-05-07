@@ -19,7 +19,7 @@ end;
 
 function Multiply(n1: INTEGER; n2: INTEGER): INTEGER;
 var
-    n3: INTEGER;
+    n2: INTEGER;
 begin
     Multiply := n1 * n2;
 end;

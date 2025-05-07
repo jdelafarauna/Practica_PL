@@ -1,6 +1,7 @@
 ### IntelliJ IDEA ###
 out/
 output.txt
+TestCase3.txt
 !**/src/main/**/out/
 !**/src/test/**/out/
 
