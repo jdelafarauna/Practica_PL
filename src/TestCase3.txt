@@ -10,7 +10,7 @@ var
 
 procedure ShowValues(x: INTEGER; y: INTEGER);
 var
-    d, e, f, g: INTEGER;
+    h, e, f, g: INTEGER;
     r2, r3, r4, r5 : REAL;
 begin
     writeln('First value: ', x);
