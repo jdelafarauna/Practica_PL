@@ -29,9 +29,8 @@ El flujo principal de ejecución del compilador es el siguiente:
 ## Instalación
 
 1. **Clonar el repositorio**:
-   ```
+
    git clone https://github.com/jdelafarauna/Practica_PL.git
-   ```
 
 2. **Importar el proyecto en IntelliJ IDEA**:
    - Abrir IntelliJ IDEA.
